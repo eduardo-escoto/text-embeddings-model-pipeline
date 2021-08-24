@@ -1,0 +1,33 @@
+db_args:
+    host: ""
+    user: ""
+    password: ""
+    port: 0000
+    db: ""
+        
+raw_feature_list:
+    - "id"
+    - "timestamp"
+    - "util_feature"
+    - "categoric_feature"
+    - "text_feature_1"
+    - "text_feature_2"
+    - "numeric_feature_1"
+    - "numeric_feature_2"
+
+
+eng_feature_list:
+    - "date(timestamp) as timestamp_date"
+    
+time_col_name: "timestamp"
+db_name: "" # change this
+table_name: "" # change this
+read_threads: 30
+
+sme_query_template: |
+    select
+    {feature_list_str},
+    {eng_feature_list_str}
+    from {db_name}.`{table_name}`
+    where
+    {time_col_name} between '{{}}' and '{{}}'
